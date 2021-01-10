@@ -5,17 +5,21 @@ public class Main {
 
     public static void main(String[] args) {
         int[] arr = {15,7,-8,0,45,7,800,-15};
-        for(int i = 0; i < arr.length - 1;)
-            if (arr[i] > arr[i + 1]) {
+        boolean k = true;// показывает нужно ли делать сортировку
+        while(k)
+        for(int i = 0; i < arr.length - 1;i++){
+            k = false;// не нужно
+            if (arr[i] > arr[i + 1]){
                 swap(arr, i, i + 1);
-                i = 0;
-            } else i++;
+                k = true;// если что-то поменяли, то все-таки нужно
+            }
+        }
         for ( int i: arr ) {
             System.out.print(i + " ");
         }
     }
 
-    private static void swap(int[] array, int i, int j) {
+    private static void swap( int[] array, int i, int j) {
         int tmp = array[i];
         array[i] = array[j];
         array[j] = tmp;
