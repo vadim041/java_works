@@ -1,0 +1,26 @@
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+        int[] numbs = { 3, 3, 4, 5,17,4 };
+        int k = 0;
+        int max_k = 0;
+        int max_num = numbs[0];
+        for (int value : numbs) {
+            for (int numb : numbs) {
+                if (value == numb)
+                    k++;
+            }
+//если кол-во вхождений текущего эл-та больше максимального
+            if (k > max_k || k == max_k && value < max_num) {
+//Номер элемента s max kolvom vhogdenij
+                max_k = k;
+//Znachenie etogo elementa
+                max_num = value;
+            }
+            k = 0;
+        }
+        System.out.println(max_num);
+    }
+} 
