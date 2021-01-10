@@ -1,4 +1,4 @@
-//сортировка обменом
+//сортировка обменом по возрастанию
 package com.company;
 
 public class Main {
