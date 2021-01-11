@@ -1,0 +1,25 @@
+// NOD and NOK
+package com.company;
+
+import static java.lang.System.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+    System.out.println(nod(18,30));
+    System.out.println(nok(18,30));
+}
+    public static int nod(int a, int b){
+        while (a!=0 && b!=0){
+        if( a >= b) {
+            a %= b;
+        }
+        else b %= a;
+        }
+        return a + b;
+    }
+    public static int nok(int a, int b){
+        int i = (a * b) / nod(a, b);
+        return i;
+    }
+}
