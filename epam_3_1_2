@@ -1,0 +1,13 @@
+//сортировка выбором по убыванию
+package com.company;
+
+import static java.lang.System.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+    String str = "word1word32wordword";
+    str = str.replace("word","letter");
+    System.out.println(str);
+}
+}
