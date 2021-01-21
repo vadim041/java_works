@@ -1,0 +1,23 @@
+//change camelCase to snake_case
+
+
+public class Main {
+
+    public static void main(String[] args) {
+    String str = "CAmELTaSE";
+    StringBuffer new_str = new StringBuffer(str);
+    int k = 0;
+    for(int i = 1;i < new_str.length();i++){
+        if(new_str.charAt(i) >= 'A' && new_str.charAt(i) <= 'Z') k++;
+    }
+    k += new_str.length();
+        for(int i = 1;i < k;i++){
+            if(new_str.charAt(i) >= 'A' && new_str.charAt(i) <= 'Z'){
+                new_str.insert(i,"_");
+                i++;
+            }
+        }
+    String res = new_str.toString().toLowerCase();
+    System.out.println(res);
+}
+}
