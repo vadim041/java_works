@@ -1,0 +1,13 @@
+//из "информатика" сделать "торт"
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+    String str = "информатика";
+    String str_new;
+    str_new = str.charAt(str.indexOf('т')) + str.substring(str.indexOf("ор"),str.indexOf("ор") + 2) + str.charAt(str.indexOf('т'));
+    System.out.println(str_new);
+
+    }
+}
