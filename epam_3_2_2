@@ -1,0 +1,22 @@
+//вставить после каждого a символ b
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+    StringBuffer str = new StringBuffer("amafdagnaa");
+    int k = 0;
+    for(int i = 0;i < str.length();i++){
+        if(str.charAt(i) == 'a')
+            k++;
+        }
+    k += str.length();
+        for(int i = 0;i < k;i++)
+            if (str.charAt(i) == 'a') {
+                str.insert(i + 1, 'b');
+                i++;
+            }
+        System.out.println(str);
+    }
+
+}
