@@ -1,0 +1,17 @@
+//каждый символ из первой строки вывести во вторую 2 раза
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+    String str = "hello, world!";
+    StringBuffer str_new = new StringBuffer();
+    for(int i = 0; i< str.length();i++){
+        str_new.append(String.valueOf(str.charAt(i)).repeat(2));
+    }
+    System.out.println(str_new);
+
+    }
+
+
+}
