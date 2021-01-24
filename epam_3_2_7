@@ -1,0 +1,28 @@
+//удаляем из строки пробелы и повторяющиеся символы
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+    StringBuffer str = new StringBuffer("abc cde def");
+    int k = str.length();
+    for(int i = 0;i < k;i++){
+        boolean t = false; //надо ли удалять символ
+        if(str.charAt(i) == ' ') {// удаляем пробелы
+            str.deleteCharAt(i);
+            k--;//уменьшается значение длины массива в цикле
+            i--;//еще раз просматриваем i-тый элемент
+        }
+        if(i > 0)
+        for(int j = i - 1; j >= 0;j--)// ищем такой же элемент в строке до него
+            if (str.charAt(j) == str.charAt(i))
+                t = true;
+        if(t) {
+            str.deleteCharAt(i);
+            k--;
+            i--;
+        }
+    }
+    System.out.println(str);
+    }
+}
