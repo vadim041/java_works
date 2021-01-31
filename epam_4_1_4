@@ -1,0 +1,121 @@
+package com.company;
+import java.util.Date;
+import java.util.Scanner;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+public class Main{
+
+       public static void main(String[] args){
+           Train[] trains = new Train[5];
+           trains[0] = new Train("Minsk",1825,9,4);
+           trains[1] = new Train("Moscow",1712,11,32);
+           trains[2] = new Train("Moscow",185,2,13);
+           trains[3] = new Train("St.Peterburg",805,7,10);
+           trains[4] = new Train("Rostov",175,14,47);
+           menu(trains);
+       }
+       public static void menu(Train[] arr) {
+           int a = 1;
+           while(a != 0){
+               String text = "1 - Сортировка поездов по номерам\n"+
+                       "2 - Вывод информации о поезде по введенному номеру\n" +
+                       "3 - Сортировка поездов по пункту назначения\n" +
+                       "0 - Выход";
+               System.out.println(text);
+               Scanner in = new Scanner(System.in);
+               a = in.nextInt();
+               switch (a){
+                   case (1):
+                       sortByNum(arr);
+                       break;
+                   case (2):
+                       System.out.println("Введите номер поезда");
+                       int num = in.nextInt();
+                       getTrainByNum(arr,num);
+                       break;
+                   case(3):
+                       sortByPoint(arr);
+                       break;
+                   case(0):
+                       break;
+                   default:
+                       System.out.println("Неверное число");
+                       break;
+               }
+           }
+       }
+       public static void sortByPoint(Train[] arr){
+           boolean k = true;// показывает нужно ли делать сортировку
+           while(k) {
+               k = false;// не нужно
+               for (int i = 0; i < arr.length - 1; i++) {
+                   if (arr[i].getDestination().compareTo(arr[i + 1].getDestination()) > 0) {
+                       swap(arr, i, i + 1);
+                       k = true;// если что-то поменяли, то все-таки нужно
+                   }
+                   else if(arr[i].getDestination().compareTo(arr[i + 1].getDestination()) ==  0){
+                       if(arr[i].getTime().after(arr[i + 1].getTime()))
+                           swap(arr, i, i + 1);
+                   }
+               }
+           }
+           for(Train i : arr)
+               i.show();
+       }
+       public static void getTrainByNum(Train[] arr,int num){
+           boolean t = false;
+            for(Train i : arr){
+                if(i.getNum() == num){
+                    i.show();
+                    t = true;
+                }
+            }
+            if(!t){
+                System.out.println("Неверный номер поезда");
+            }
+       }
+       public static void sortByNum(Train[] arr){
+            boolean k = true;// показывает нужно ли делать сортировку
+            while(k) {
+                k = false;// не нужно
+                for (int i = 0; i < arr.length - 1; i++) {
+                    if (arr[i].getNum() > arr[i + 1].getNum()) {
+                        swap(arr, i, i + 1);
+                        k = true;// если что-то поменяли, то все-таки нужно
+                    }
+                }
+            }
+            for(Train i : arr)
+                   i.show();
+        }
+       public static void swap(Train[] arr,int i ,int j){
+           Train c = arr[i];
+           arr[i] = arr[j];
+           arr[j] = c;
+    }
+}
+class Train{
+        String destination;
+        int train_num;
+        Calendar time;
+        Train(String pt, int num, int hour,int minute){
+            this.destination = pt;
+            this.train_num = num;
+            this.time = new GregorianCalendar();
+            this.time.set(Calendar.HOUR_OF_DAY, hour);
+            this.time.set(Calendar.MINUTE, minute);
+        }
+        public void show(){
+            System.out.println(this.destination + " " + this.train_num + " " + this.time.getTime());
+        }
+        public int getNum(){
+            return this.train_num;
+        }
+        public String getDestination(){
+            return this.destination;
+        }
+        public Date getTime(){
+            return this.time.getTime();
+        }
+}
