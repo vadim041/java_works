@@ -1,0 +1,31 @@
+package com.company;
+
+public class Main{
+
+       public static void main(String[] args) {
+        Test2 ob = new Test2(15,18);
+        ob.showNums();
+        ob.setNums(12,235);
+        ob.showNums();
+}
+}
+class Test2{
+    private int a;
+    private int b;
+    Test2(int a,int b){
+        this.a = a;
+        this.b = b;
+    }
+    Test2(){
+        a = 1;
+        b = 2;
+    }
+    public void showNums(){
+        System.out.println(a);
+        System.out.println(b);
+    }
+    public  void setNums(int a,int b){
+        this.a = a;
+        this.b = b;
+    }
+}
