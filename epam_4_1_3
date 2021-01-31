@@ -1,0 +1,41 @@
+//выводит студентов, у которых отметки только 9 и 10
+package com.company;
+public class Main{
+
+       public static void main(String[] args) {
+        Student[] arr_students = new Student[5];
+        arr_students[0] = new Student("Gross V.A.", 2 , new int[]{7, 8, 9, 6, 5});
+        arr_students[1] = new Student("Vasili K.O.", 5 , new int[]{7, 1, 9, 2, 5});
+        arr_students[2] = new Student("Alex L.P.", 10 , new int[]{9, 10, 9, 10, 9});
+        arr_students[3] = new Student("Bill U.P.", 15 , new int[]{7, 8, 9, 6, 5});
+        arr_students[4] = new Student("Good_man A.B.", 8 , new int[]{10 ,9 , 9, 10, 10});
+        Student.showGoodStudents(arr_students);
+}
+}
+class Student{
+    private String surname;
+    private int group;
+    private int[] success = new int[5];
+    Student(String str, int gr, int[] succ){
+        surname = str;
+        group = gr;
+        System.arraycopy(succ, 0, success, 0, success.length);
+    }
+    public void showInfo(){
+        System.out.println(surname + ' ' + group);
+    }
+    public static void showGoodStudents(Student[] st){
+        for (Student i: st) {
+            boolean t = true;
+            for(int j: i.success){
+                if(j != 9 && j !=10){
+                    t = false;
+                    break;
+                }
+            }
+            if(t)
+                i.showInfo();
+        }
+    }
+
+}
