@@ -1,8 +1,9 @@
 //выводит студентов, у которых отметки только 9 и 10
+//выводит студентов, у которых отметки только 9 и 10
 package com.company;
 public class Main{
 
-       public static void main(String[] args) {
+    public static void main(String[] args) {
         Student[] arr_students = new Student[5];
         arr_students[0] = new Student("Gross V.A.", 2 , new int[]{7, 8, 9, 6, 5});
         arr_students[1] = new Student("Vasili K.O.", 5 , new int[]{7, 1, 9, 2, 5});
@@ -10,15 +11,16 @@ public class Main{
         arr_students[3] = new Student("Bill U.P.", 15 , new int[]{7, 8, 9, 6, 5});
         arr_students[4] = new Student("Good_man A.B.", 8 , new int[]{10 ,9 , 9, 10, 10});
         Student.showGoodStudents(arr_students);
-}
+    }
 }
 class Student{
     private String surname;
     private int group;
-    private int[] success = new int[5];
+    private int[] success;
     Student(String str, int gr, int[] succ){
         surname = str;
         group = gr;
+        success = new int[succ.length];
         System.arraycopy(succ, 0, success, 0, success.length);
     }
     public void showInfo(){
