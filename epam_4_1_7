@@ -1,0 +1,44 @@
+package com.company;
+//площадь и периметр треугольника
+public class Main{
+
+       public static void main(String[] args){
+        Triangle a = new Triangle(12,13,14);
+        Triangle b = Triangle.newTriangle_side(15,18,19);
+        Triangle c = a.newTriangle_tr();
+        a.show();
+        b.show();
+        c.show();
+        System.out.println(a.findSquare());
+        System.out.println(b.findPerimetr());
+        
+}
+}
+class Triangle{
+   private int side_1;
+   private int side_2;
+   private int side_3;
+   Triangle(int a,int b,int c){
+       side_1 = a;
+       side_2 = b;
+       side_3 = c;
+   }
+   public static Triangle newTriangle_side(int a,int b,int c){
+       return new Triangle(a,b,c);
+   }
+   public Triangle newTriangle_tr(){
+       return new Triangle(this.side_1,this.side_2,this.side_3);
+   }
+   public void show(){
+       System.out.println(this.side_1 + " " + this.side_2+ " " + this.side_3);
+   }
+   public double findSquare(){
+       double halfPer = (this.side_1 + this.side_2 + this.side_3) / 2.0;
+       double scale = Math.pow(10,2);
+       double sqr = Math.round(scale*Math.sqrt(halfPer * (halfPer - this.side_1) * (halfPer - this.side_2) * (halfPer - this.side_3)))/scale;
+       return sqr;
+   }
+   public int findPerimetr(){
+       return this.side_1 + this.side_2 + this.side_3;
+   }
+}
