@@ -1,0 +1,61 @@
+package com.company;
+//возможность поменять время на определенное кол-во минут, секунд и часов
+public class Main{
+
+       public static void main(String[] args){
+        Time time = new Time(16,20,15);
+        time.show();
+        time.changeTime(-16,60,50);
+        time.show();
+}
+}
+class Time{
+    private int hours;
+    private int minutes;
+    private int seconds;
+    Time(int hour,int min,int sec){
+        this.hours = (hour > 0 && hour <=23)? hour : 0;
+        this. minutes = (min > 0 && min <=59)? min : 0;
+        this.seconds = (sec > 0 && sec <=23)? sec : 0;
+    }
+    public void changeHours(int hour){
+        if(hour > 0 && hour <=23)
+            this.hours = hour;
+    }
+    public void changeMinutes(int min){
+        if(min > 0 && min <=59)
+            this.minutes = min;
+    }
+    public void changeSeconds(int sec){
+        if(sec > 0 && sec <=59)
+            this.seconds = sec;
+    }
+    public void changeTime(int h, int m,int s){
+        int add_m = 0;
+        if(s >= 0 || Math.abs(s) <= this.seconds || (this.seconds + s) % 60 == 0){
+        add_m = (this.seconds + s) / 60;
+        this.seconds = (this.seconds + s) % 60;
+        }
+        else{
+            add_m = (this.seconds + s) / 60 - 1;
+            this.seconds = 60 - Math.abs(this.seconds + s) % 60 ;
+        }
+        int add_h = 0;
+        if((m + add_m) >=0 || Math.abs(m + add_m) <= this.minutes || (this.minutes + m + add_m) % 60 == 0){
+            add_h = (this.minutes + m + add_m) / 60;
+            this.minutes = (this.minutes + m + add_m) % 60;
+        }
+        else{
+            add_h = (this.minutes + m + add_m) / 60 - 1;
+            this.minutes = 60  - Math.abs(this.minutes + m + add_m) % 60;
+        }
+        if(s >= 0 || Math.abs(s) <= this.seconds || (this.seconds + s) % 60 == 0){
+            this.hours = (this.hours + h + add_h) % 24;
+        }
+        else this.hours = 24 - Math.abs(this.hours + h + add_h) % 24;
+
+    }
+    public void show(){
+        System.out.println(this.hours + ":" + this.minutes + ":" + this.seconds);
+    }
+}
