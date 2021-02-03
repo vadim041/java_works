@@ -1,0 +1,96 @@
+package com.company;
+public class Main{
+
+       public static void main(String[] args){
+           Airline[] arr = new Airline[5];
+           arr[0] = new Airline("Minsk", 1234,"Boeing", new int[]{15, 40},Week.MONDAY);
+           arr[1] = new Airline("Moscow", 1254,"Boeing 2", new int[]{0, 10},Week.MONDAY);
+           arr[2] = new Airline("Brest", 4578,"Boeing", new int[]{19, 15},Week.SUNDAY);
+           arr[3] = new Airline("London", 5641,"Boeing 3", new int[]{15, 5},Week.SATURDAY);
+           arr[4] = new Airline("Madrid", 4087,"Boeing 5", new int[]{22, 48},Week.WEDNESDAY);
+           Find_airline fly = new Find_airline(arr);
+           fly.showPoint("Madrid");
+           fly.showDayWeek(Week.WEDNESDAY);
+           fly.showDayTime(Week.MONDAY, new int[]{0, 10});
+}
+}
+class Find_airline {
+    private Airline[] arr;
+    Find_airline(Airline[] arr){
+        this.arr = new Airline[arr.length];
+        this.arr = arr;
+    }
+   public void showPoint(String town){
+        boolean t = false;
+        for(Airline i : this.arr){
+            if(i.getTown().equals(town)) {
+                i.print();
+                t = true;
+            }
+        }
+        if(!t)
+            System.out.println("Not Found!");
+   }
+   public void showDayWeek(Week day){
+       boolean t = false;
+       for(Airline i : this.arr){
+           if(i.getDay() == day) {
+               i.print();
+               t = true;
+           }
+       }
+       if(!t)
+           System.out.println("Not Found!");
+   }
+   public void showDayTime(Week day,int[] time){
+       boolean t = false;
+       for(Airline i : this.arr){
+           if(i.getDay() == day && (i.getTime()[0] > time[0] || i.getTime()[0] == time[0] && i.getTime()[1] > time[1])) {
+               i.print();
+               t = true;
+           }
+       }
+       if(!t)
+           System.out.println("Not Found!");
+   }
+}
+
+class Airline {
+    private String town;
+    private int num_flight;
+    private String type;
+    private int[] time;
+    private Week day;
+    Airline(String town, int num,String type,int[] time,Week day){
+        this.town = town;
+        this.num_flight = num;
+        this.type = type;
+        this.time = new int[2];
+        if(time.length == 2){
+            this.time[0] = time[0];
+            this.time[1] = time[1];
+        }
+        this.day = day;
+    }
+    public void print(){
+        System.out.println(this.num_flight + " " + this.town + " " + this.type + " " + this.time[0] + ":" + this.time[1] + " " + this.day);
+    }
+    public String getTown(){
+        return this.town;
+    }
+    public Week getDay(){
+        return this.day;
+    }
+    public int[] getTime(){
+        return this.time;
+    }
+}
+enum Week{
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY,
+    SUNDAY
+}
