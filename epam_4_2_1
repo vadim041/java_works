@@ -1,0 +1,58 @@
+package com.company;
+public class Main{
+
+       public static void main(String[] args){
+        Word sent1_word1 = new Word("Hello");
+        Word sent1_word2 = new Word("Vadim");
+           Word sent2_word1 = new Word("How");
+           Word sent2_word2 = new Word("are");
+           Word sent2_word3 = new Word("you");
+           Word header = new Word("Good text");
+           Sentence sent1 = new Sentence(sent1_word1);
+           sent1.addWord(sent1_word2);
+           Sentence sent2 = new Sentence(sent2_word1);
+           sent2.addWord(sent2_word2);
+           sent2.addWord(sent2_word3);
+           Text text = new Text(sent1);
+           text.addSent(sent2);
+           text.addHeader(header);
+           text.showText();
+}
+}
+class Word{
+    private String word;
+    Word(String word){
+        this.word = word;
+    }
+    String getWord(){
+        return this.word;
+    }
+}
+class Sentence{
+    private String sent = "";
+    Sentence(Word word){
+        this.sent += word.getWord();
+    }
+    void addWord(Word word){
+        sent +=  ' ' + word.getWord();
+    }
+    String getSent(){
+        return this.sent;
+    }
+}
+class Text{
+    private String text="";
+    private Word header;
+    Text(Sentence sent){
+        this.text += sent.getSent() + ". ";
+    }
+    void addSent(Sentence sent){
+        text += sent.getSent() +". ";
+    }
+    void addHeader(Word header){
+        this.header = header;
+    }
+    void showText(){
+        System.out.println(this.header.getWord() + "\n" +this.text);
+    }
+}
